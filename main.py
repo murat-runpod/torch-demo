@@ -27,7 +27,11 @@ def cleanup_distributed():
 def main():
     # Initialize distributed environment
     local_rank, global_rank, world_size, device = init_distributed()
-        
+    
+    # Create a vector filled with this rank's value
+    vector_size = 5
+    vector = torch.ones(vector_size, device=device) * global_rank
+    
     print(f"Rank {global_rank} original vector: {vector}")
     
     # Perform all-reduce operation (sum)
@@ -36,6 +40,10 @@ def main():
     # After all_reduce, all ranks have the same vector: the sum of all original vectors
     print(f"Rank {global_rank} after all_reduce: {vector}")
     
+    # Calculate what the expected sum should be
+    # Sum of arithmetic sequence 0 to (world_size-1) for each element
+    expected_sum = world_size * (world_size - 1) / 2  # Sum of 0 to (world_size-1)
+    print(f"Rank {global_rank} expected sum: {expected_sum}")
     
     # Clean up distributed environment when done
     cleanup_distributed()

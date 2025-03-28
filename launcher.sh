@@ -1,4 +1,3 @@
-export NCCL_SOCKET_IFNAME=eth1
 torchrun \
 --nproc_per_node=$NUM_TRAINERS \
 --nnodes=$NUM_NODES \
