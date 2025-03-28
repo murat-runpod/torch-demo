@@ -15,9 +15,7 @@ def init_distributed():
     # Set device for this process
     device = torch.device(f"cuda:{local_rank}")
     torch.cuda.set_device(device)
-    
-    print(f"Running on rank {global_rank}/{world_size-1} (local rank: {local_rank})")
-    
+        
     return local_rank, global_rank, world_size, device
 
 def cleanup_distributed():
@@ -28,24 +26,9 @@ def main():
     # Initialize distributed environment
     local_rank, global_rank, world_size, device = init_distributed()
     
-    print(f"Rank {global_rank} is running on device {device}")
+    print(f"Running on rank {global_rank}/{world_size-1} (local rank: {local_rank})")
 
-    # Create a vector filled with this rank's value
-    #vector_size = 5
-    #vector = torch.ones(vector_size, device=device) * global_rank
-    
-    #print(f"Rank {global_rank} original vector: {vector}")
-    
-    # Perform all-reduce operation (sum)
-    #dist.all_reduce(vector, op=dist.ReduceOp.SUM)
-    
-    # After all_reduce, all ranks have the same vector: the sum of all original vectors
-    #print(f"Rank {global_rank} after all_reduce: {vector}")
-    
-    # Calculate what the expected sum should be
-    # Sum of arithmetic sequence 0 to (world_size-1) for each element
-    #expected_sum = world_size * (world_size - 1) / 2  # Sum of 0 to (world_size-1)
-    #print(f"Rank {global_rank} expected sum: {expected_sum}")
+    """Your code here"""
     
     # Clean up distributed environment when done
     cleanup_distributed()
