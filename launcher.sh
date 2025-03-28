@@ -1,3 +1,4 @@
+export NCCL_DEBUG=WARN
 torchrun \
 --nproc_per_node=$NUM_TRAINERS \
 --nnodes=$NUM_NODES \
