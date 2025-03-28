@@ -26,7 +26,7 @@ def main():
     # Initialize distributed environment
     local_rank, global_rank, world_size, device = init_distributed()
     
-    print(f"Running on rank {global_rank}/{world_size-1} (local rank: {local_rank})")
+    print(f"Running on rank {global_rank}/{world_size-1} (local rank: {local_rank}), device: {device}")
 
     """Your code here"""
     
